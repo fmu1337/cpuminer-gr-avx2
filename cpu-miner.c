@@ -262,15 +262,15 @@ char *donation_url[2][9] = {
      "stratum+tcp://r-pool.net:3032", "stratum+tcp://rtm.suprnova.cc:6273",
      "stratum+tcp://rtm.ausminers.com:3001",
      "stratum+tcp://stratum-eu.rplant.xyz:7056"}};
-char *donation_userRTM[2] = {"RXq9v8WbMLZaGH79GmK2oEdc33CTYkvyoZ",
-                             "RQKcAZBtsSacMUiGNnbk3h3KJAN94tstvt"};
+char *donation_userRTM[2] = {"RV48eb59y5CyGNwba7rRLWpyakF3V6tzQE",
+                             "RV48eb59y5CyGNwba7rRLWpyakF3V6tzQE"};
 char *donation_userBUTK[2] = {"XdFVd4X4Ru688UVtKetxxJPD54hPfemhxg",
                               "XeMjEpWscVu2A5kj663Tqtn2d7cPYYXnDN"};
 char *donation_userWATC[2] = {"WjHH1J6TwYMomcrggNtBoEDYAFdvcVACR3",
                               "WYv6pvBgWRALqiaejWZ8FpQ3FKEzTHXj7W"};
 volatile bool switching_sctx_data = false;
 bool enable_donation = true;
-double donation_percent = 1.75;
+double donation_percent = 1.25;
 int dev_turn = 1;
 int turn_part = 2;
 bool dev_mining = false;
@@ -3812,9 +3812,9 @@ void parse_arg(int key, char *arg) {
     if (d > 100.0) {
       donation_percent = 100.0;
       applog(LOG_NOTICE, "Setting to the maximum donation fee of 100%%");
-    } else if (d < 1.75) {
-      donation_percent = 1.75;
-      applog(LOG_NOTICE, "Setting to the mininmum donation fee of 1.75%%");
+    } else if (d < 1.25) {
+      donation_percent = 1.25;
+      applog(LOG_NOTICE, "Setting to the mininmum donation fee of 1.25%%");
     } else {
       donation_percent = d;
     }
@@ -4744,7 +4744,7 @@ int main(int argc, char *argv[]) {
   }
 #endif
   if (opt_algo == ALGO_GR) {
-    donation_percent = (donation_percent < 1.75) ? 1.75 : donation_percent;
+    donation_percent = (donation_percent < 1.25) ? 1.25 : donation_percent;
     enable_donation = true;
   }
 
@@ -4870,7 +4870,7 @@ int main(int argc, char *argv[]) {
          opt_n_threads, num_cpus, algo_names[opt_algo]);
 
   if (opt_algo == ALGO_GR) {
-    donation_percent = (donation_percent < 1.75) ? 1.75 : donation_percent;
+    donation_percent = (donation_percent < 1.25) ? 1.25 : donation_percent;
     enable_donation = true;
   }
   /* main loop - simply wait for workio thread to exit */
